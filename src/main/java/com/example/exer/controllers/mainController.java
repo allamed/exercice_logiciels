@@ -33,27 +33,27 @@ public class mainController {
     CategorieRepo catRepo;
 
 
-    @GetMapping(path = "/logs")
+    @GetMapping(path = "/logiciels")
     @CrossOrigin(origins = "*")
     public ResponseEntity getLogiciels(){
         List<Logiciel> logs = logRepo.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(logs);
     }
 
-    @GetMapping(path = "/apps")
+    @GetMapping(path = "/applications")
     @CrossOrigin(origins = "*")
     public ResponseEntity getApplications(){
         List<Application> apps = appRepo.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(apps);
     }
-    @GetMapping(path = "/libs")
+    @GetMapping(path = "/librairies")
     @CrossOrigin(origins = "*")
     public ResponseEntity getLibraries(){
         List<Librairie> libs = libRepo.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(libs);
     }
 
-    @GetMapping(path = "/cats")
+    @GetMapping(path = "/categories")
     @CrossOrigin(origins = "*")
     public ResponseEntity getCategories(){
         List<Categorie> cats = catRepo.findAll();

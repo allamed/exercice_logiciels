@@ -21,7 +21,7 @@ public class Categorie {
     @JsonIgnore
     private List<Logiciel> logicielsSec;
     @OneToMany(mappedBy = "categoriePrincipale")
-    //@JsonIgnore
+    @JsonIgnore
     private List<Logiciel> logicielsPrin;
 
 }

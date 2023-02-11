@@ -25,27 +25,27 @@ public class WebSecurityConfig {
         this.userService = userService;
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.formLogin();
-        /*http.authorizeHttpRequests((authz) -> authz.requestMatchers("/css/**", "/js/**", "/", "/url1/")
+        http.authorizeHttpRequests((authz) -> authz.requestMatchers("/css/**", "/js/**")
                         .permitAll()
-                        .requestMatchers("/url2/")
+                        .requestMatchers("/applications")
                         .authenticated()
-                        .requestMatchers("/url3/")
-                        .hasAuthority("ADMIN")
+                        .requestMatchers("/logiciels")
+                .hasAuthority ("ADMIN")
                         .requestMatchers("/insertlogicielform/")
-                        .hasAuthority("ADMIN")
+                        .hasRole("ADMIN")
                         .requestMatchers("/insertlogiciel/")
-                        .hasAuthority("ADMIN")
+                        .hasRole("ADMIN")
                         .requestMatchers("/logiciel/getall/")
                         .authenticated()
                         .anyRequest()
                         .authenticated()
-                )
-                .formLogin();
-*/
+                ).formLogin();
+       //http.exceptionHandling().accessDeniedPage("/login");
+
         return http.build();
     }
 
@@ -60,6 +60,19 @@ public class WebSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return userService;
+        /*UserDetails user1 =User.withUsername("user")
+                .password(bCryptPasswordEncoder.encode("123"))
+                .roles("USER")
+                .build();
+
+        UserDetails user2 =
+                User.withUsername("admin")
+                        .password(bCryptPasswordEncoder.encode("123"))
+                        .roles("ADMIN")
+                        .build();
+
+        return new InMemoryUserDetailsManager(Arrays.asList(user1, user2));*/
+
     }
 
 }

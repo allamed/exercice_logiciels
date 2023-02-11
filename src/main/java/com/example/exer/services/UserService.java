@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
-            "user with email %s not found";
+            "user with email is not found";
 
     private final CompteRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;

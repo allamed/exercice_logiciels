@@ -2,6 +2,7 @@ package com.example.exer;
 
 import com.example.exer.entities.*;
 import com.example.exer.repositories.*;
+import com.example.exer.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,8 @@ public class ExerApplication {
     LicenceRepo licRepo;
     @Autowired
     ComposantRepo compRepo;
+    @Autowired
+    UserService us;
 
 
 
@@ -37,6 +40,19 @@ public class ExerApplication {
     CommandLineRunner start(){
 
         return args -> {
+
+           System.out.println("   Creation du compte super admin   ");
+            Compte compte = new Compte("admin@emi.ac.ma", "123");
+            compte.setUserRole(UserRole.ADMIN);
+            us.signUpUser(compte);
+
+
+            Compte compte2 = new Compte("allam@emi.ac.ma", "123");
+            //compte2.setId(2L);
+            compte2.setUserRole(UserRole.USER);
+            us.signUpUser(compte2);
+
+
 
             Categorie cat1=new Categorie();
             Categorie cat2= new Categorie();
@@ -81,7 +97,8 @@ public class ExerApplication {
             log2.setUrl(new URL("https://chat.openai.com/chat"));
             List<Application> apps= new ArrayList<>();
             apps.add((Application) log1);
-            log1.setApplicationsDep(apps);
+            log2.setApplicationsDep(apps);
+
 
             logRepo.save(log1);
             logRepo.save(log2);

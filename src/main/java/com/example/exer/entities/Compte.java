@@ -18,7 +18,7 @@ public class Compte implements UserDetails {
 
     private static final long serialVersionUID = -3449399821985445163L;
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     /*ilyas modification */
     private Long id;
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")
